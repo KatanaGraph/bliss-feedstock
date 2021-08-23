@@ -1,9 +1,20 @@
-libtoolize
-autoreconf -fi
-automake --add-missing --copy
-./configure --prefix=$PREFIX --disable-gmp
+rm -rf build
+mkdir build
+cd build
+
+cmake -B . -S .. -Wno-dev
+
 make -j${CPU_COUNT}
-if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-make check
-fi
-make install
+
+# Install manually since the build files don't have an install target
+mkdir -p ${PREFIX}/bin
+cp bliss ${PREFIX}/bin
+
+mkdir -p ${PREFIX}/lib
+cp libbliss* ${PREFIX}/lib
+
+mkdir -p ${PREFIX}/include/bliss
+cp ../src/*.hh ${PREFIX}/include/bliss
+
+# Patch the header files so use bliss/ prefix
+sed -i 's@#include "\(.*\)"$@#include <bliss/\1>@' ${PREFIX}/include/bliss/*

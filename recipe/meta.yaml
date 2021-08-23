@@ -1,6 +1,6 @@
 {% set name = "bliss" %}
-{% set version = "0.73" %}
-{% set version_patch = ".debian-1.sage-2016-08-02" %}
+{% set version = "0.77" %}
+{% set version_patch = ".junttila" %}
 {% set full_version = version + version_patch %}
 
 package:
@@ -8,9 +8,8 @@ package:
   version: {{ version }}.0{{ version_patch.replace("-", "_") }}
 
 source:
-  url: https://github.com/mkoeppe/bliss/releases/download/sage_package%2F{{ version }}{{ version_patch.replace(".", "%2B") }}/bliss-{{ full_version }}.tar.gz
-# url: http://www.tcs.hut.fi/Software/bliss/bliss-{{ version }}.zip
-  sha256: 77ae36f3fe4c071031b438b23d9019152dc2dc42afb4b6acfe4cb73209d2d979
+  url: https://users.aalto.fi/~tjunttil/bliss/downloads/bliss-0.77.zip
+  sha256: acc8b98034f30fad24c897f365abd866c13d9f1bb207e398d0caf136875972a4
 
 build:
   number: 0
@@ -20,8 +19,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - libtool
-    - autoconf
-    - automake
+    - cmake
     - make
 
 test:
@@ -30,13 +28,13 @@ test:
     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
 
 about:
-  home: http://www.tcs.hut.fi/Software/bliss/
+  home: https://users.aalto.fi/~tjunttil/bliss/index.html
   license: LGPL3
   license_family: LGPL
   license_file: COPYING.LESSER
-  summary: 'A Tool for Computing Automorphism Groups and Canonical Labelings of Graphs'
-  doc_url: http://www.tcs.hut.fi/Software/bliss/doxy/index.html
+  summary: 'bliss is an open-source tool for computing canonical labelings and automorphism groups of graphs.'
 
 extra:
   recipe-maintainers:
-    - isuruf
+    - katanagraph
+    - amp
