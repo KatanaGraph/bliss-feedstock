@@ -18,14 +18,19 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
-    - libtool
     - cmake
     - make
 
 test:
+  requires:
+    - {{ compiler('cxx') }}
+  files:
+    - test_app.cpp
   commands:
     - test -f "$PREFIX/include/bliss/graph.hh"
     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
+    - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
+    - bliss -help
 
 about:
   home: https://users.aalto.fi/~tjunttil/bliss/index.html
