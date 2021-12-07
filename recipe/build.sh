@@ -3,10 +3,11 @@ mkdir build
 cd build
 
 CPU_COUNT=4
-PREFIX=4
+PREFIX=4444
 echo ${CPU_COUNT}
 echo ${PREFIX}
 
+echo "hello world"
 # cmake -B . -S .. -Wno-dev
 # make -j${CPU_COUNT}
 
