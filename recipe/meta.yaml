@@ -21,6 +21,12 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - make
+  host:
+    - libuuid
+  run:
+    - antlr =4.9.3_1
+  run_constrained:
+    - libuuid
 
 # test:
 #   requires:

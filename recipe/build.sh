@@ -1,16 +1,53 @@
-rm -rf build
-mkdir build
-cd build
+# rm -r /home/cpchung/miniconda3/envs/katana-dev/conda-bld/antlr*
 
 CPU_COUNT=4
 PREFIX=4444
 echo ${CPU_COUNT}
 echo ${PREFIX}
 
+# sudo apt install -yd uuid 
+# sudo apt install -yd uuid-dev
+# sudo apt install -yd uuid-runtime
+conda list | grep uuid
 echo "hello world"
-# cmake -B . -S .. -Wno-dev
-# make -j${CPU_COUNT}
 
+
+
+rm -rf build
+
+mkdir build
+
+cd build
+
+
+cmake .. \
+-DCMAKE_BUILD_TYPE=DEBUG \
+-DCMAKE_C_FLAGS_DEBUG="-O0 -fno-omit-frame-pointer  -fsanitize=address" \
+-DCMAKE_CXX_FLAGS_DEBUG="-O0 -fno-omit-frame-pointer -fsanitize=address" \
+-DCMAKE_CXX_COMPILER_LAUNCHER="/usr/bin/ccache" \
+-DCMAKE_C_COMPILER_LAUNCHER="/usr/bin/ccache" \
+-DCMAKE_C_COMPILER=clang-12 \
+-DCMAKE_CXX_COMPILER=clang++-12  
+# \
+# -DWITH_DEMO=True \
+# -DANTLR_JAR_LOCATION=/home/cpchung/antlr-4.9.3-complete.jar
+
+make -j
+
+cd ..
+# ls dist/
+# should see these from /home/cpchung/kg/forked/toolbox/packaging/antlr4-cpp-runtime-4.9.3-source/dist:
+# (katana-dev) cpchung@cpchung:~/.../dist$ ls
+# libantlr4-runtime.a  libantlr4-runtime.so  libantlr4-runtime.so.4.9.3
+
+cp dist/lib*  /usr/lib/x86_64-linux-gnu/
+
+
+mkdir -p /usr/include/antlr4-runtime/
+cp -r runtime/src/* /usr/include/antlr4-runtime/
+
+
+# ./../demo/antlr4-demo
 
 
 # # Install manually since the build files don't have an install target
