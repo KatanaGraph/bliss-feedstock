@@ -1,15 +1,16 @@
-{% set name = "bliss" %}
-{% set version = "0.77" %}
+{% set name = "antlr4-cpp-runtime" %}
+{% set version = "4.9.3" %}
 {% set version_patch = ".junttila" %}
 {% set full_version = version + version_patch %}
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}.0{{ version_patch.replace("-", "_") }}
+  # version: {{ version }}.0{{ version_patch.replace("-", "_") }}
+  version: {{ version }}
 
 source:
-  url: https://users.aalto.fi/~tjunttil/bliss/downloads/bliss-0.77.zip
-  sha256: acc8b98034f30fad24c897f365abd866c13d9f1bb207e398d0caf136875972a4
+  url: https://www.antlr.org/download/antlr4-cpp-runtime-4.9.3-source.zip
+  sha256: 5f0af6efd81f476c3e775c486eb0a71c25d6bbc14373e88a64690e2738d68e03
 
 build:
   number: 0
@@ -21,23 +22,23 @@ requirements:
     - cmake
     - make
 
-test:
-  requires:
-    - {{ compiler('cxx') }}
-  files:
-    - test_app.cpp
-  commands:
-    - test -f "$PREFIX/include/bliss/graph.hh"
-    - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
-    - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
-    - bliss -help
+# test:
+#   requires:
+#     - {{ compiler('cxx') }}
+#   files:
+#     - test_app.cpp
+#   commands:
+#     - test -f "$PREFIX/include/bliss/graph.hh"
+#     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
+#     - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
+#     - bliss -help
 
 about:
-  home: https://users.aalto.fi/~tjunttil/bliss/index.html
-  license: LGPL3
-  license_family: LGPL
-  license_file: COPYING.LESSER
-  summary: 'bliss is an open-source tool for computing canonical labelings and automorphism groups of graphs.'
+  home: https://www.antlr.org/
+  license: BSD 3-clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: 'ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files.'
 
 extra:
   recipe-maintainers:
