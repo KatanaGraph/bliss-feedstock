@@ -28,8 +28,8 @@ requirements:
   run_constrained:
     - libuuid
 
-# test:
-#   requires:
+test:
+  #   requires:
 #     - {{ compiler('cxx') }}
 #   files:
 #     - test_app.cpp
@@ -38,6 +38,10 @@ requirements:
 #     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
 #     - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
 #     - bliss -help
+  commands:
+    - antlr4
+    - pwd
+    - ./../demo/antlr4-demo
 
 about:
   home: https://www.antlr.org/

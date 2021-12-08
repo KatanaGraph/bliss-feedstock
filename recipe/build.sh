@@ -1,14 +1,12 @@
 # rm -r /home/cpchung/miniconda3/envs/katana-dev/conda-bld/antlr*
 
 CPU_COUNT=4
-PREFIX=4444
 echo ${CPU_COUNT}
-echo ${PREFIX}
 
 # sudo apt install -yd uuid 
 # sudo apt install -yd uuid-dev
 # sudo apt install -yd uuid-runtime
-conda list | grep uuid
+# conda list | grep uuid
 echo "hello world"
 
 
@@ -18,7 +16,7 @@ rm -rf build
 mkdir build
 
 cd build
-
+wget https://www.antlr.org/download/antlr-4.9.3-complete.jar
 
 cmake .. \
 -DCMAKE_BUILD_TYPE=DEBUG \
@@ -27,12 +25,12 @@ cmake .. \
 -DCMAKE_CXX_COMPILER_LAUNCHER="/usr/bin/ccache" \
 -DCMAKE_C_COMPILER_LAUNCHER="/usr/bin/ccache" \
 -DCMAKE_C_COMPILER=clang-12 \
--DCMAKE_CXX_COMPILER=clang++-12  
-# \
-# -DWITH_DEMO=True \
-# -DANTLR_JAR_LOCATION=/home/cpchung/antlr-4.9.3-complete.jar
+-DCMAKE_CXX_COMPILER=clang++-12  \
+-DWITH_DEMO=True \
+-DANTLR_JAR_LOCATION=./antlr-4.9.3-complete.jar
 
-make -j
+make -j4
+echo "finish build"
 
 cd ..
 # ls dist/
@@ -40,12 +38,15 @@ cd ..
 # (katana-dev) cpchung@cpchung:~/.../dist$ ls
 # libantlr4-runtime.a  libantlr4-runtime.so  libantlr4-runtime.so.4.9.3
 
-cp dist/lib*  /usr/lib/x86_64-linux-gnu/
+
+mkdir -p $PREFIX/lib/x86_64-linux-gnu/
+cp dist/lib*  $PREFIX/lib/x86_64-linux-gnu/
 
 
-mkdir -p /usr/include/antlr4-runtime/
-cp -r runtime/src/* /usr/include/antlr4-runtime/
+mkdir -p $PREFIX/include/antlr4-runtime/
+cp -r runtime/src/* $PREFIX/include/antlr4-runtime/
 
+echo "finish cp"
 
 # ./../demo/antlr4-demo
 
