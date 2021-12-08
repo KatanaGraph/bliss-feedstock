@@ -25,8 +25,7 @@ requirements:
     - libuuid
   run:
     - antlr =4.9.3_1
-  run_constrained:
-    - libuuid
+
 
 test:
   #   requires:
@@ -41,7 +40,6 @@ test:
   commands:
     - antlr4
     - pwd
-    - ./../demo/antlr4-demo
 
 about:
   home: https://www.antlr.org/
