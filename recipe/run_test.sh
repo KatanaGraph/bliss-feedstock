@@ -7,5 +7,4 @@ echo "done from run_test.sh"
 
 
 # cd antlr4-cpp-example
-
-# make antlr
+# bash test.sh
