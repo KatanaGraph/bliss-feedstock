@@ -1,4 +1,4 @@
-
+pwd
 rm -rf build
 
 mkdir build
@@ -33,7 +33,7 @@ echo "finished cp"
 ./build/demo/antlr4-demo
 echo "finished simple demo"
 
-./run_test.sh
+
 
 # # # Install manually since the build files don't have an install target
 # # mkdir -p ${PREFIX}/bin

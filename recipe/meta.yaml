@@ -42,6 +42,7 @@ outputs:
     #     - bliss -help
       commands:
         - ./test_app.sh # [not win]
+        - ./run_test.sh # [not win]
         - g++ test_app.cpp -o test_app  && ./test_app #[not win]
         - antlr4 # [not win]
         # - pwd
