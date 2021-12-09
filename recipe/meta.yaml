@@ -25,21 +25,27 @@ requirements:
     - libuuid
   run:
     - antlr =4.9.3_1
+outputs:
+  - name: antlr-runtime
 
+    test:
 
-test:
-  #   requires:
-#     - {{ compiler('cxx') }}
-#   files:
-#     - test_app.cpp
-#   commands:
-#     - test -f "$PREFIX/include/bliss/graph.hh"
-#     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
-#     - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
-#     - bliss -help
-  commands:
-    - antlr4
-    - pwd
+      files:
+        - test_app.sh
+        - test_app.cpp
+      requires:
+        - {{ compiler('cxx') }}
+    #   commands:
+    #     - test -f "$PREFIX/include/bliss/graph.hh"
+    #     - test -f "$PREFIX/lib/libbliss${SHLIB_EXT}"
+    #     - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
+    #     - bliss -help
+      commands:
+        - ./test_app.sh # [not win]
+        - g++ test_app.cpp -o test_app  && ./test_app #[not win]
+        - antlr4 # [not win]
+        # - pwd
+        # - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app  && ./test_app
 
 about:
   home: https://www.antlr.org/
@@ -49,7 +55,7 @@ about:
   summary: 'ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files.'
 
 extra:
-  recipe-maintainers:
-    - katanagraph
-    - amp
-    - Chak-Pong Chung
+      recipe-maintainers:
+        - katanagraph
+        - amp
+        - Chak-Pong Chung
