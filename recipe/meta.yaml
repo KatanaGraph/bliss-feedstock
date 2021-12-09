@@ -31,8 +31,9 @@ outputs:
     test:
 
       files:
-        - test_app.sh
+        - run_test.sh
         - test_app.cpp
+        - antlr4-cpp-example/
       requires:
         - {{ compiler('cxx') }}
     #   commands:
@@ -41,10 +42,10 @@ outputs:
     #     - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app -lbliss && ./test_app
     #     - bliss -help
       commands:
-        - ./test_app.sh # [not win]
-        - ./run_test.sh # [not win]
+        - ./run_test.sh # [not win]   
+        - bash run_test2.sh # [not win] 
         - g++ test_app.cpp -o test_app  && ./test_app #[not win]
-        - antlr4 # [not win]
+        # - antlr4 # [not win]
         # - pwd
         # - $CXX $CXXFLAGS $LDFLAGS test_app.cpp -o test_app  && ./test_app
 
