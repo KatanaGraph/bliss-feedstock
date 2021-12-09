@@ -21,17 +21,19 @@ make -j4
 echo "finished build"
 cd ..
 
-mkdir -p $PREFIX/lib/x86_64-linux-gnu/
-cp dist/lib*  $PREFIX/lib/x86_64-linux-gnu/
+# ./build/demo/antlr4-demo
+# echo "finished simple demo"
 
 
-mkdir -p $PREFIX/include/antlr4-runtime/
-cp -r runtime/src/* $PREFIX/include/antlr4-runtime/
+mkdir -p ${PREFIX}/lib/x86_64-linux-gnu/
+cp dist/lib*  ${PREFIX}/lib/x86_64-linux-gnu/
+
+
+mkdir -p ${PREFIX}/include/antlr4-runtime/
+cp -r runtime/src/* ${PREFIX}/include/antlr4-runtime/
 
 echo "finished cp"
 
-# ./build/demo/antlr4-demo
-# echo "finished simple demo"
 
 
 echo "prefix: ${PREFIX} from build.sh"
