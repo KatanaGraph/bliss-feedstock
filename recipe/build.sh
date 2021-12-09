@@ -1,3 +1,7 @@
+#!/bin/bash
+set -ex
+
+
 rm -rf build
 
 mkdir build
@@ -25,6 +29,11 @@ cd ..
 # echo "finished simple demo"
 
 
+
+echo "prefix: ${PREFIX} from build.sh"
+echo $(eval "echo prefix: ${PREFIX} from build.sh")
+
+
 mkdir -p ${PREFIX}/lib/x86_64-linux-gnu/
 cp dist/lib*  ${PREFIX}/lib/x86_64-linux-gnu/
 
@@ -33,11 +42,6 @@ mkdir -p ${PREFIX}/include/antlr4-runtime/
 cp -r runtime/src/* ${PREFIX}/include/antlr4-runtime/
 
 echo "finished cp"
-
-
-
-echo "prefix: ${PREFIX} from build.sh"
-echo $(eval "echo prefix: ${PREFIX} from build.sh")
 
 # # # Install manually since the build files don't have an install target
 # # mkdir -p ${PREFIX}/bin
